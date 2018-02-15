@@ -23,7 +23,7 @@ import javax.swing.event.ListDataListener;
  *
  * @author nicot
  */
-public class SaveGameManager implements ListModel<String>, Observer {
+public class BackupManager implements ListModel<String>, Observer {
     private File backupDirectory = null;
     private SaveGame originalSaveGame = null;
     private final List<SaveGame> saveGames = new LinkedList<>();

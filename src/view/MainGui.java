@@ -43,7 +43,7 @@ public class MainGui extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        saveGameManager = new model.SaveGameManager();
+        backupManager = new model.BackupManager();
         profileManager = new model.ProfileManager();
         profilesPanel = new javax.swing.JPanel();
         profileDirLabel = new javax.swing.JLabel();
@@ -51,11 +51,11 @@ public class MainGui extends javax.swing.JFrame {
         profileDirButton = new javax.swing.JButton();
         profileComboBox = new javax.swing.JComboBox<>();
         defaultDirButton = new javax.swing.JButton();
-        saveGamesPanel = new javax.swing.JPanel();
+        backupsPanel = new javax.swing.JPanel();
         copyrightLabel = new javax.swing.JLabel();
-        saveGamesListPanel = new javax.swing.JPanel();
+        backupsListPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        saveGamesList = new javax.swing.JList<>();
+        backupsList = new javax.swing.JList<>();
         limitCheckBox = new javax.swing.JCheckBox();
         limitSpinner = new javax.swing.JSpinner();
         deleteSelectionButton = new javax.swing.JButton();
@@ -63,13 +63,13 @@ public class MainGui extends javax.swing.JFrame {
         backupButton = new javax.swing.JButton();
         autoToggleButton = new javax.swing.JToggleButton();
         separator = new javax.swing.JSeparator();
-        saveGameDetailPanel = new view.SaveGameDetailPanel();
-        jSeparator1 = new javax.swing.JSeparator();
-        imageComponent1 = new view.ImageComponent();
+        backupDetailPanel = new view.BackupDetailPanel();
+        horizontalSeparator = new javax.swing.JSeparator();
+        bannerImageComponent = new view.ImageComponent();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Divinity: Original Sin 2 - Honour Mode Helper");
-        setIconImage(Toolkit.getDefaultToolkit().getImage(MainGui.class.getResource("/resource/dos2.png")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(MainGui.class.getResource("/resource/nicotopia.png")));
         setResizable(false);
 
         profileDirLabel.setText("Profiles Directory");
@@ -88,7 +88,7 @@ public class MainGui extends javax.swing.JFrame {
             }
         });
 
-        profileComboBox.setModel(this.profileManager);
+        profileComboBox.setModel(profileManager);
         profileComboBox.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 profileComboBoxItemStateChanged(evt);
@@ -135,26 +135,26 @@ public class MainGui extends javax.swing.JFrame {
         copyrightLabel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         copyrightLabel.setText("©2018 Nicotopia");
 
-        saveGamesList.setModel(this.saveGameManager);
-        saveGamesList.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        saveGamesList.addMouseListener(new java.awt.event.MouseAdapter() {
+        backupsList.setModel(backupManager);
+        backupsList.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        backupsList.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                saveGamesListMouseClicked(evt);
+                backupsListMouseClicked(evt);
             }
         });
-        saveGamesList.addKeyListener(new java.awt.event.KeyAdapter() {
+        backupsList.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                saveGamesListKeyReleased(evt);
+                backupsListKeyReleased(evt);
             }
         });
-        saveGamesList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+        backupsList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                saveGamesListValueChanged(evt);
+                backupsListValueChanged(evt);
             }
         });
-        jScrollPane1.setViewportView(saveGamesList);
+        jScrollPane1.setViewportView(backupsList);
 
-        limitCheckBox.setText("Limit Save Game Count:");
+        limitCheckBox.setText("Limit Backup Count:");
         limitCheckBox.setToolTipText("");
         limitCheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -195,103 +195,103 @@ public class MainGui extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout saveGamesListPanelLayout = new javax.swing.GroupLayout(saveGamesListPanel);
-        saveGamesListPanel.setLayout(saveGamesListPanelLayout);
-        saveGamesListPanelLayout.setHorizontalGroup(
-            saveGamesListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout backupsListPanelLayout = new javax.swing.GroupLayout(backupsListPanel);
+        backupsListPanel.setLayout(backupsListPanelLayout);
+        backupsListPanelLayout.setHorizontalGroup(
+            backupsListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-            .addGroup(saveGamesListPanelLayout.createSequentialGroup()
+            .addGroup(backupsListPanelLayout.createSequentialGroup()
                 .addComponent(deleteSelectionButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(refreshButton))
-            .addGroup(saveGamesListPanelLayout.createSequentialGroup()
+            .addGroup(backupsListPanelLayout.createSequentialGroup()
                 .addComponent(backupButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(autoToggleButton))
-            .addGroup(saveGamesListPanelLayout.createSequentialGroup()
+            .addGroup(backupsListPanelLayout.createSequentialGroup()
                 .addComponent(limitCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(limitSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-        saveGamesListPanelLayout.setVerticalGroup(
-            saveGamesListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(saveGamesListPanelLayout.createSequentialGroup()
-                .addGroup(saveGamesListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        backupsListPanelLayout.setVerticalGroup(
+            backupsListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(backupsListPanelLayout.createSequentialGroup()
+                .addGroup(backupsListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backupButton)
                     .addComponent(autoToggleButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(saveGamesListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(backupsListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(limitCheckBox)
                     .addComponent(limitSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(saveGamesListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(backupsListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(deleteSelectionButton)
                     .addComponent(refreshButton)))
         );
 
         separator.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        saveGameDetailPanel.setSaveGameManager(saveGameManager);
+        backupDetailPanel.setSaveGameManager(backupManager);
 
-        javax.swing.GroupLayout saveGamesPanelLayout = new javax.swing.GroupLayout(saveGamesPanel);
-        saveGamesPanel.setLayout(saveGamesPanelLayout);
-        saveGamesPanelLayout.setHorizontalGroup(
-            saveGamesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(saveGamesPanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout backupsPanelLayout = new javax.swing.GroupLayout(backupsPanel);
+        backupsPanel.setLayout(backupsPanelLayout);
+        backupsPanelLayout.setHorizontalGroup(
+            backupsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(backupsPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(saveGamesListPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(backupsListPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(separator, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(saveGamesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(saveGamesPanelLayout.createSequentialGroup()
+                .addGroup(backupsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(backupsPanelLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(copyrightLabel))
-                    .addGroup(saveGamesPanelLayout.createSequentialGroup()
+                    .addGroup(backupsPanelLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(saveGameDetailPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(backupDetailPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-        saveGamesPanelLayout.setVerticalGroup(
-            saveGamesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(saveGamesPanelLayout.createSequentialGroup()
-                .addGroup(saveGamesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(saveGamesPanelLayout.createSequentialGroup()
-                        .addComponent(saveGameDetailPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        backupsPanelLayout.setVerticalGroup(
+            backupsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(backupsPanelLayout.createSequentialGroup()
+                .addGroup(backupsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(backupsPanelLayout.createSequentialGroup()
+                        .addComponent(backupDetailPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(copyrightLabel))
                     .addComponent(separator)
-                    .addComponent(saveGamesListPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(backupsListPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
-        imageComponent1.setImage(MainGui.class.getResource("/resource/banner.jpg"));
+        bannerImageComponent.setImage(MainGui.class.getResource("/resource/banner.jpg"));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(saveGamesPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(backupsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(profilesPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jSeparator1)
+                .addComponent(horizontalSeparator)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addComponent(imageComponent1, javax.swing.GroupLayout.PREFERRED_SIZE, 768, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(bannerImageComponent, javax.swing.GroupLayout.PREFERRED_SIZE, 768, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(imageComponent1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(bannerImageComponent, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(profilesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(horizontalSeparator, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(saveGamesPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(backupsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -305,13 +305,13 @@ public class MainGui extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_profileDirButtonActionPerformed
 
-    private void saveGamesListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_saveGamesListValueChanged
-        this.saveGameDetailPanel.setSaveGame(this.saveGamesList.getSelectedIndices().length == 1 ? this.saveGamesList.getSelectedIndex() : -1);
-    }//GEN-LAST:event_saveGamesListValueChanged
+    private void backupsListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_backupsListValueChanged
+        this.backupDetailPanel.setSaveGame(this.backupsList.getSelectedIndices().length == 1 ? this.backupsList.getSelectedIndex() : -1);
+    }//GEN-LAST:event_backupsListValueChanged
 
     private void backupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backupButtonActionPerformed
         try {
-            if(!this.saveGameManager.backupIfNeeded(this.limitSpinner.isEnabled() ? (Integer)this.limitSpinner.getValue() : -1)) {
+            if(!this.backupManager.backupIfNeeded(this.limitSpinner.isEnabled() ? (Integer)this.limitSpinner.getValue() : -1)) {
                 JOptionPane.showMessageDialog(this, "The current save game is already backed up.", "Info", JOptionPane.INFORMATION_MESSAGE);
             }
         } catch(UnsupportedOperationException | IOException ex) {
@@ -344,35 +344,35 @@ public class MainGui extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_profileDirTextFieldActionPerformed
 
-    private void saveGamesListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveGamesListMouseClicked
-        if(evt.getClickCount() == 2 && evt.getButton() == MouseEvent.BUTTON1 && this.saveGamesList.getSelectedIndices().length == 1) {
-            this.saveGameDetailPanel.restore();
+    private void backupsListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backupsListMouseClicked
+        if(evt.getClickCount() == 2 && evt.getButton() == MouseEvent.BUTTON1 && this.backupsList.getSelectedIndices().length == 1) {
+            this.backupDetailPanel.restore();
         }
-    }//GEN-LAST:event_saveGamesListMouseClicked
+    }//GEN-LAST:event_backupsListMouseClicked
 
     private void deleteSelectionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteSelectionButtonActionPerformed
         if(JOptionPane.showConfirmDialog(this, "Do you really want to DELETE all SELECTED save games?", "Confirm Deletion", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-            this.saveGameManager.delete(this.saveGamesList.getSelectedIndices());
+            this.backupManager.delete(this.backupsList.getSelectedIndices());
         }
     }//GEN-LAST:event_deleteSelectionButtonActionPerformed
 
     private void profileComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_profileComboBoxItemStateChanged
         try {
-            this.saveGameManager.setSaveGameDirectory(this.profileManager.getSaveGameDirectory());
+            this.backupManager.setSaveGameDirectory(this.profileManager.getSaveGameDirectory());
         } catch (UnsupportedOperationException | IOException ex) {
             JOptionPane.showMessageDialog(this, ex.getLocalizedMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_profileComboBoxItemStateChanged
 
     private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
-        this.saveGameManager.refresh();
+        this.backupManager.refresh();
     }//GEN-LAST:event_refreshButtonActionPerformed
 
-    private void saveGamesListKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_saveGamesListKeyReleased
+    private void backupsListKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_backupsListKeyReleased
         if(evt.getKeyCode() == KeyEvent.VK_DELETE) {
             this.deleteSelectionButtonActionPerformed(null);
         }
-    }//GEN-LAST:event_saveGamesListKeyReleased
+    }//GEN-LAST:event_backupsListKeyReleased
 
     private void defaultDirButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_defaultDirButtonActionPerformed
         String defaultBaseDirectory = System.getProperty("user.home") + File.separator + "Documents" + File.separator + "Larian Studios" + File.separator + "Divinity Original Sin 2" + File.separator + "PlayerProfiles";
@@ -466,12 +466,17 @@ public class MainGui extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton autoToggleButton;
     private javax.swing.JButton backupButton;
+    private view.BackupDetailPanel backupDetailPanel;
+    private model.BackupManager backupManager;
+    private javax.swing.JList<String> backupsList;
+    private javax.swing.JPanel backupsListPanel;
+    private javax.swing.JPanel backupsPanel;
+    private view.ImageComponent bannerImageComponent;
     private javax.swing.JLabel copyrightLabel;
     private javax.swing.JButton defaultDirButton;
     private javax.swing.JButton deleteSelectionButton;
-    private view.ImageComponent imageComponent1;
+    private javax.swing.JSeparator horizontalSeparator;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JCheckBox limitCheckBox;
     private javax.swing.JSpinner limitSpinner;
     private javax.swing.JComboBox<String> profileComboBox;
@@ -481,11 +486,6 @@ public class MainGui extends javax.swing.JFrame {
     private model.ProfileManager profileManager;
     private javax.swing.JPanel profilesPanel;
     private javax.swing.JButton refreshButton;
-    private view.SaveGameDetailPanel saveGameDetailPanel;
-    private model.SaveGameManager saveGameManager;
-    private javax.swing.JList<String> saveGamesList;
-    private javax.swing.JPanel saveGamesListPanel;
-    private javax.swing.JPanel saveGamesPanel;
     private javax.swing.JSeparator separator;
     // End of variables declaration//GEN-END:variables
 }

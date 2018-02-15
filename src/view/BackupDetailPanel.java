@@ -15,24 +15,24 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.SaveGame;
-import model.SaveGameManager;
+import model.BackupManager;
 
 /**
  *
  * @author nicot
  */
-public class SaveGameDetailPanel extends javax.swing.JPanel {
-    private SaveGameManager saveGameManager;
+public class BackupDetailPanel extends javax.swing.JPanel {
+    private BackupManager saveGameManager;
     private SaveGame saveGame;
     
     /**
      * Creates new form SaveGameDetail
      */
-    public SaveGameDetailPanel() {
+    public BackupDetailPanel() {
         initComponents();
     }
     
-    public void setSaveGameManager(SaveGameManager manager) {
+    public void setSaveGameManager(BackupManager manager) {
         if(this.saveGameManager != null) {
             throw new UnsupportedOperationException("Save game manager can be set only once!");
         }
@@ -45,7 +45,7 @@ public class SaveGameDetailPanel extends javax.swing.JPanel {
         try {
             url = this.saveGame != null ? this.saveGame.getImageFile().toURI().toURL() : null;
         } catch (MalformedURLException ex) {
-            Logger.getLogger(SaveGameDetailPanel.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BackupDetailPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.saveGameImageComponent.setImage(url);
         this.nameTextField.setText(this.saveGame != null ? this.saveGame.getName() : "");
