@@ -31,7 +31,7 @@ public class MainGui extends javax.swing.JFrame {
      */
     public MainGui() {
         initComponents();
-        this.defaultDirButtonActionPerformed(null);        
+        this.defaultDos2ButtonActionPerformed(null);
     }
 
     /**
@@ -50,7 +50,9 @@ public class MainGui extends javax.swing.JFrame {
         profileDirTextField = new javax.swing.JTextField();
         profileDirButton = new javax.swing.JButton();
         profileComboBox = new javax.swing.JComboBox<>();
-        defaultDirButton = new javax.swing.JButton();
+        defaultDos2Button = new javax.swing.JButton();
+        defaultDos1Button = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         backupsPanel = new javax.swing.JPanel();
         copyrightLabel = new javax.swing.JLabel();
         backupsListPanel = new javax.swing.JPanel();
@@ -95,12 +97,21 @@ public class MainGui extends javax.swing.JFrame {
             }
         });
 
-        defaultDirButton.setText("Default");
-        defaultDirButton.addActionListener(new java.awt.event.ActionListener() {
+        defaultDos2Button.setText("DOS2");
+        defaultDos2Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                defaultDirButtonActionPerformed(evt);
+                defaultDos2ButtonActionPerformed(evt);
             }
         });
+
+        defaultDos1Button.setText("DOS 1");
+        defaultDos1Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                defaultDos1ButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Default:");
 
         javax.swing.GroupLayout profilesPanelLayout = new javax.swing.GroupLayout(profilesPanel);
         profilesPanel.setLayout(profilesPanelLayout);
@@ -115,8 +126,12 @@ public class MainGui extends javax.swing.JFrame {
                 .addComponent(profileDirButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(profileComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(defaultDirButton)
+                .addComponent(defaultDos1Button)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(defaultDos2Button)
                 .addContainerGap())
         );
         profilesPanelLayout.setVerticalGroup(
@@ -127,8 +142,10 @@ public class MainGui extends javax.swing.JFrame {
                     .addComponent(profileDirLabel)
                     .addComponent(profileDirTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(profileDirButton)
-                    .addComponent(defaultDirButton)
-                    .addComponent(profileComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(defaultDos2Button)
+                    .addComponent(profileComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(defaultDos1Button)
+                    .addComponent(jLabel1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -322,7 +339,7 @@ public class MainGui extends javax.swing.JFrame {
     private void autoToggleButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_autoToggleButtonItemStateChanged
         if(this.autoToggleButton.isSelected() && this.watchThread == null) {
             try {
-                this.watchThread = new WatchThread(this.profileManager.getSaveGameDirectory() + File.separator + "Story" + File.separator + "HonourMode");
+                this.watchThread = new WatchThread(this.profileManager.getSaveGameDirectory());
                 this.watchThread.start();
             } catch (IOException ex) {
                 this.watchThread = null;
@@ -358,7 +375,7 @@ public class MainGui extends javax.swing.JFrame {
 
     private void profileComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_profileComboBoxItemStateChanged
         try {
-            this.backupManager.setSaveGameDirectory(this.profileManager.getSaveGameDirectory());
+            this.backupManager.setDirectories(this.profileManager.getProfileDirectory(), this.profileManager.getSaveGameDirectory());
         } catch (UnsupportedOperationException | IOException ex) {
             JOptionPane.showMessageDialog(this, ex.getLocalizedMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -374,14 +391,19 @@ public class MainGui extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_backupsListKeyReleased
 
-    private void defaultDirButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_defaultDirButtonActionPerformed
+    private void defaultDos2ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_defaultDos2ButtonActionPerformed
         String defaultBaseDirectory = System.getProperty("user.home") + File.separator + "Documents" + File.separator + "Larian Studios" + File.separator + "Divinity Original Sin 2" + File.separator + "PlayerProfiles";
         this.setBaseDirectory(new File(defaultBaseDirectory));
-    }//GEN-LAST:event_defaultDirButtonActionPerformed
+    }//GEN-LAST:event_defaultDos2ButtonActionPerformed
 
     private void limitCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limitCheckBoxActionPerformed
         this.limitSpinner.setEnabled(this.limitCheckBox.isSelected());
     }//GEN-LAST:event_limitCheckBoxActionPerformed
+
+    private void defaultDos1ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_defaultDos1ButtonActionPerformed
+        String defaultBaseDirectory = System.getProperty("user.home") + File.separator + "Documents" + File.separator + "Larian Studios" + File.separator + "Divinity Original Sin Enhanced Edition" + File.separator + "PlayerProfiles";
+        this.setBaseDirectory(new File(defaultBaseDirectory));
+    }//GEN-LAST:event_defaultDos1ButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -423,6 +445,17 @@ public class MainGui extends javax.swing.JFrame {
         this.profileDirTextField.setText(file.getAbsolutePath());
         try {
             this.profileManager.setBaseDirectory(file);
+            switch(this.profileManager.getGame()) {
+                case GAME_DOS1:
+                    this.bannerImageComponent.setImage(MainGui.class.getResource("/resource/banner1.png"));
+                    break;
+                case GAME_DOS2:
+                    this.bannerImageComponent.setImage(MainGui.class.getResource("/resource/banner2.jpg"));
+                    break;
+                case GAME_UNKNOWN:
+                    this.bannerImageComponent.setImage(null);
+                    break;
+            }
         } catch(UnsupportedOperationException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -434,7 +467,7 @@ public class MainGui extends javax.swing.JFrame {
         private final WatchKey watchKey;
 
         WatchThread(String saveGameDirectory) throws IOException {
-            this.path = new File(saveGameDirectory).toPath();
+            this.path = new File(saveGameDirectory + File.separator + "HonourMode").toPath();
             this.watchService = FileSystems.getDefault().newWatchService();
             this.watchKey = this.path.register(this.watchService, StandardWatchEventKinds.ENTRY_CREATE, StandardWatchEventKinds.ENTRY_MODIFY, StandardWatchEventKinds.ENTRY_DELETE);
         }
@@ -473,9 +506,11 @@ public class MainGui extends javax.swing.JFrame {
     private javax.swing.JPanel backupsPanel;
     private view.ImageComponent bannerImageComponent;
     private javax.swing.JLabel copyrightLabel;
-    private javax.swing.JButton defaultDirButton;
+    private javax.swing.JButton defaultDos1Button;
+    private javax.swing.JButton defaultDos2Button;
     private javax.swing.JButton deleteSelectionButton;
     private javax.swing.JSeparator horizontalSeparator;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JCheckBox limitCheckBox;
     private javax.swing.JSpinner limitSpinner;

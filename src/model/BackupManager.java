@@ -90,13 +90,13 @@ public class BackupManager implements ListModel<String>, Observer {
         return true;
     }
     
-    public void setSaveGameDirectory(String path) throws IOException {
-        File tempBackupDirectory = path != null ? new File(path + File.separator + "Backup") : null;
+    public void setDirectories(String profileDir, String savegamesDir) throws IOException {
+        File tempBackupDirectory = profileDir != null ? new File(profileDir + File.separator + "Backup") : null;
         if(tempBackupDirectory != null && tempBackupDirectory.isFile()) {
             throw new UnsupportedOperationException("Path to backup directory points to an actual file!");
         }
         if((tempBackupDirectory == null && this.backupDirectory != null) || (tempBackupDirectory != null && !tempBackupDirectory.equals(this.backupDirectory))) {
-            this.originalSaveGame = path != null ? new SaveGame(new File(path + File.separator + "Story" + File.separator + "HonourMode")) : null;
+            this.originalSaveGame = savegamesDir != null ? new SaveGame(new File(savegamesDir + File.separator + "HonourMode")) : null;
             this.backupDirectory = tempBackupDirectory;
             this.refresh();
         }

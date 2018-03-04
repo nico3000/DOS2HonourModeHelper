@@ -76,8 +76,12 @@
                   <Component id="profileDirButton" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="profileComboBox" min="-2" pref="91" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="defaultDirButton" min="-2" max="-2" attributes="0"/>
+                  <Component id="defaultDos1Button" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="defaultDos2Button" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -90,8 +94,10 @@
                       <Component id="profileDirLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="profileDirTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="profileDirButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="defaultDirButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="defaultDos2Button" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="profileComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="defaultDos1Button" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -135,13 +141,26 @@
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JButton" name="defaultDirButton">
+        <Component class="javax.swing.JButton" name="defaultDos2Button">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Default"/>
+            <Property name="text" type="java.lang.String" value="DOS2"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="defaultDirButtonActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="defaultDos2ButtonActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="defaultDos1Button">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="DOS 1"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="defaultDos1ButtonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Default:"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
